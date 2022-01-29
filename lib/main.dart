@@ -25,13 +25,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String firstNum = "";
-  String output = "";
+  int firstNum = 0;
+  int seconNum = 0;
+  String operator = "";
+  String output = "0";
+  String result = "";
 
   pressed(String btnVal) {
+    if (btnVal == "c") {
+      result = "0";
+    } else if (btnVal == "/" ||
+        btnVal == "+" ||
+        btnVal == "-" ||
+        btnVal == "*") {
+      operator = btnVal;
+
+      if (btnVal == "/") {
+        operator = "/";
+      }
+    } else if (btnVal == "=") {
+      if (operator == "/") {
+        result = (firstNum / seconNum).toString();
+      }
+    } else {
+      firstNum = int.parse(btnVal);
+      seconNum = int.parse(btnVal);
+      result = btnVal;
+    }
     setState(() {
-      firstNum = btnVal;
-      output = btnVal;
+      output = result;
     });
   }
 
@@ -66,37 +88,89 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           pressed("9");
                         }),
-                    MaterialButton(child: Text("*"), onPressed: () {})
+                    MaterialButton(
+                        child: Text("*"),
+                        onPressed: () {
+                          pressed("*");
+                        })
                   ],
                 ),
               ),
               Container(
                 child: Row(
                   children: [
-                    MaterialButton(child: Text("4"), onPressed: () {}),
-                    MaterialButton(child: Text("5"), onPressed: () {}),
-                    MaterialButton(child: Text("6"), onPressed: () {}),
-                    MaterialButton(child: Text("+"), onPressed: () {})
+                    MaterialButton(
+                        child: Text("4"),
+                        onPressed: () {
+                          pressed("4");
+                        }),
+                    MaterialButton(
+                        child: Text("5"),
+                        onPressed: () {
+                          pressed("5");
+                        }),
+                    MaterialButton(
+                        child: Text("6"),
+                        onPressed: () {
+                          pressed("6");
+                        }),
+                    MaterialButton(
+                        child: Text("+"),
+                        onPressed: () {
+                          pressed("+");
+                        })
                   ],
                 ),
               ),
               Container(
                 child: Row(
                   children: [
-                    MaterialButton(child: Text("1"), onPressed: () {}),
-                    MaterialButton(child: Text("2"), onPressed: () {}),
-                    MaterialButton(child: Text("3"), onPressed: () {}),
-                    MaterialButton(child: Text("-"), onPressed: () {})
+                    MaterialButton(
+                        child: Text("1"),
+                        onPressed: () {
+                          pressed("1");
+                        }),
+                    MaterialButton(
+                        child: Text("2"),
+                        onPressed: () {
+                          pressed("2");
+                        }),
+                    MaterialButton(
+                        child: Text("3"),
+                        onPressed: () {
+                          pressed("3");
+                        }),
+                    MaterialButton(
+                        child: Text("-"),
+                        onPressed: () {
+                          pressed("-");
+                        })
                   ],
                 ),
               ),
               Container(
                 child: Row(
                   children: [
-                    MaterialButton(child: Text("c"), onPressed: () {}),
-                    MaterialButton(child: Text("0"), onPressed: () {}),
-                    MaterialButton(child: Text("/"), onPressed: () {}),
-                    MaterialButton(child: Text("="), onPressed: () {})
+                    MaterialButton(
+                        child: Text("c"),
+                        onPressed: () {
+                          pressed("c");
+                        }),
+                    MaterialButton(
+                        child: Text("0"),
+                        onPressed: () {
+                          pressed("0");
+                        }),
+                    MaterialButton(
+                        child: Text("/"),
+                        onPressed: () {
+                          pressed("/");
+                        }),
+                    MaterialButton(
+                        child: Text("="),
+                        onPressed: () {
+                          pressed("=");
+                        })
                   ],
                 ),
               )
